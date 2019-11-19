@@ -1,38 +1,6 @@
 pipeline {
     agent any
   stages {
-    stage ('Launching Pipeline') {
-      steps {
-            script {
-                    currentBuild.displayName = "${Magento_Branch}"
-                }
-                 }
-                   
-
-        checkout scm: [
-        $class: 'GitSCM',
-        branches: [[name: "*/${params.Magento_Branch}"]],
-        doGenerateSubmoduleConfigurations: false,
-        extensions: [ [$class: 'CloneOption', depth: 0, noTags: false, reference: '', shallow: true],
-                      [$class: 'RelativeTargetDirectory', relativeTargetDir: 'magento']],
-        submoduleCfg: [],
-        userRemoteConfigs: [[credentialsId: '937d9d40-8f9c-4629-bedb-4b7e0a046999',
-                             url: 'https://github.com/rameshziffity/devopsdemo.git']]]
-                             
-        checkout scm: [
-        $class: 'GitSCM',
-        branches: [[name: "*/${params.Ansible_Branch}"]],
-        doGenerateSubmoduleConfigurations: false,
-        extensions: [ [$class: 'CloneOption', depth: 0, noTags: false, reference: '', shallow: true],
-                      [$class: 'RelativeTargetDirectory', relativeTargetDir: 'ansible']],
-        submoduleCfg: [],
-        userRemoteConfigs: [[credentialsId: '937d9d40-8f9c-4629-bedb-4b7e0a046999',
-                             url: 'https://github.com/rameshziffity/Ansible.git']]]
-      }
-  
-    } 
-	
-    
     stage ('Unit Test') {
       steps {
         script {
