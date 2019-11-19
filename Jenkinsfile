@@ -1,10 +1,5 @@
 pipeline {
-  agent any
-  options { 
-    skipDefaultCheckout()
-  }
-  
-  }
+    agent any
   stages {
     stage ('Launching Pipeline') {
       steps {
