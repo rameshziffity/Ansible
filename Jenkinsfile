@@ -19,6 +19,7 @@ pipeline {
       }
     
     }
+}
     stage("Code Analysis") {
       steps {
         script {
